@@ -18,8 +18,7 @@ function showTextField() {
   let form = `
     <form>
       <label for="bingoList">Enter your bingo items:</label><br/>
-      <textarea id="bingoList" name="bingoList" rows="10" cols="50">
-      </textarea>
+      <textarea id="bingoList" name="bingoList" rows="10" cols="50"></textarea>
     </form>
     <button type='button' class='btn btn-light btn-small' id='getTextButton'>Set Text</button>
   `
@@ -38,7 +37,7 @@ function getText() {
 
 
 function freeSpace() {
-  document.getElementById("nn").innerHTML = "<br>Free Space";
+  document.getElementById("nn").innerHTML = "Free Space";
   document.getElementById("nn").setAttribute("class", "white")
 }
 
@@ -53,27 +52,14 @@ function fillBoard() {
       }
     }
 
-  function fill(value, index, array) {
-    index += 1;
-    console.log("----------------")
-    console.log("Value: " + value)
-    console.log("Index: " + index)
-    console.log("----------------")
-  }
 
   function fillSquares(value, index, array) {
-    console.log("----------------")
-    console.log("Value: " + value)
-    console.log("Index: " + index)
-    console.log("----------------")
     document.getElementById(value).innerHTML = selected[index];
   }
 
   textSplit.forEach(checkEmpty);
-  textSplit.forEach(fill);
   const shuffled = textSplit.sort(() => 0.5 - Math.random());
   let selected = shuffled.slice(0, 25);
-  console.log(selected)
   squares.forEach(fillSquares);
   freeSpace()
 }
@@ -81,6 +67,7 @@ function fillBoard() {
 
 function showBoard() {
   let board = `
+    <div class='winner text-light' id='winner'></div>
     <div class='bingoboard'>
       <div id='bb' class='grey' onclick='changeBackgroundColor(this)'>bb</div>
       <div id='bi' class='grey' onclick='changeBackgroundColor(this)'>bi</div>
@@ -110,33 +97,111 @@ function showBoard() {
     </div>
         `; 
   document.getElementById("main-content").innerHTML = board;
-  fillBoard()
+  fillBoard();
 }
 
+
 function changeBackgroundColor(divObj) {
-  currentclass = divObj.getAttribute("class")
-  console.log("Current Class: " + currentclass)
+  currentid = divObj.getAttribute("id");
+  currentclass = divObj.getAttribute("class");
   if (currentclass == 'grey'){
     divObj.setAttribute("class", "white");
   } else if (currentclass == 'white'){
     divObj.setAttribute("class", "grey");
   }
+  checkWin();
 }
 
-//function changeBackgroundColor(divObj) {
-  //background = divObj.style.background;
-  //console.log("Name Of Object: " + divObj.className);
-  //console.log("Background: " + background);
-  //if (divObj.style.background != "#ffffff"){
-    //divObj.style.background="#ffffff";
-  //} else if (background == "rgb(255, 255, 255) none repeat scroll 0% 0%" && divObj.classList.contains(grey)){
-    //console.log("We are trying...");
-    //divObj.style.background="grey";
-  //} else { 
-    //divObj.style.background="blue";
-  //} 
-    
-//}
 
+function checkWin() {
+  if (
+      document.getElementById("bb").className == "white" &&
+      document.getElementById("bi").className == "white" &&
+      document.getElementById("bn").className == "white" &&
+      document.getElementById("bg").className == "white" &&
+      document.getElementById("bo").className == "white" 
+    ||
+      document.getElementById("bb").className == "white" &&
+      document.getElementById("ib").className == "white" &&
+      document.getElementById("nb").className == "white" &&
+      document.getElementById("gb").className == "white" &&
+      document.getElementById("ob").className == "white" 
+    ||
+      document.getElementById("ib").className == "white" &&
+      document.getElementById("ii").className == "white" &&
+      document.getElementById("in").className == "white" &&
+      document.getElementById("ig").className == "white" &&
+      document.getElementById("io").className == "white" 
+    ||
+      document.getElementById("bi").className == "white" &&
+      document.getElementById("ii").className == "white" &&
+      document.getElementById("ni").className == "white" &&
+      document.getElementById("gi").className == "white" &&
+      document.getElementById("oi").className == "white" 
+    ||
+      document.getElementById("nb").className == "white" &&
+      document.getElementById("ni").className == "white" &&
+      document.getElementById("nn").className == "white" &&
+      document.getElementById("ng").className == "white" &&
+      document.getElementById("no").className == "white" 
+    ||
+      document.getElementById("bn").className == "white" &&
+      document.getElementById("in").className == "white" &&
+      document.getElementById("nn").className == "white" &&
+      document.getElementById("gn").className == "white" &&
+      document.getElementById("on").className == "white" 
+    ||
+      document.getElementById("gb").className == "white" &&
+      document.getElementById("gi").className == "white" &&
+      document.getElementById("gn").className == "white" &&
+      document.getElementById("gg").className == "white" &&
+      document.getElementById("go").className == "white" 
+    ||
+      document.getElementById("bg").className == "white" &&
+      document.getElementById("ig").className == "white" &&
+      document.getElementById("ng").className == "white" &&
+      document.getElementById("gg").className == "white" &&
+      document.getElementById("og").className == "white" 
+    ||
+      document.getElementById("ob").className == "white" &&
+      document.getElementById("oi").className == "white" &&
+      document.getElementById("on").className == "white" &&
+      document.getElementById("og").className == "white" &&
+      document.getElementById("oo").className == "white" 
+    ||
+      document.getElementById("bo").className == "white" &&
+      document.getElementById("io").className == "white" &&
+      document.getElementById("no").className == "white" &&
+      document.getElementById("go").className == "white" &&
+      document.getElementById("oo").className == "white" 
+    ||
+      document.getElementById("bb").className == "white" &&
+      document.getElementById("ii").className == "white" &&
+      document.getElementById("nn").className == "white" &&
+      document.getElementById("gg").className == "white" &&
+      document.getElementById("oo").className == "white" 
+    ||
+      document.getElementById("bo").className == "white" &&
+      document.getElementById("ig").className == "white" &&
+      document.getElementById("nn").className == "white" &&
+      document.getElementById("gi").className == "white" &&
+      document.getElementById("ob").className == "white" 
+
+  ){
+  console.log("BINGO!!");
+  youWin();
+  } else {
+    document.getElementById("winner").innerHTML = "";
+  }
+}
+
+
+function youWin() {
+  console.log("You Are a winner!") 
+  let html = `
+    <br><h2>Bingo!! You win!!</h2>
+  `;
+  document.getElementById("winner").innerHTML = html;
+}
 
 showTextField()
