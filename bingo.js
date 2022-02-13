@@ -19,15 +19,17 @@ function clearWinnerDiv() {
 
 function showTextField() {
   clearDiv()
-
+  let html = `
+    <p>Each new line will be a new item</p>
+  `;
   let form = `
     <form>
       <label for="bingoList">Enter your bingo items:</label><br/>
       <textarea id="bingoList" name="bingoList" rows="10" cols="50"></textarea>
     </form>
-    <button type='button' class='btn btn-light btn-small' id='getTextButton'>Set Text</button>
+    <button type='button' class='btn btn-light btn-small' id='getTextButton'>Create Board</button>
   `
-  document.getElementById("main-content").innerHTML = form;
+  document.getElementById("main-content").innerHTML = html + form;
   document.getElementById("getTextButton").addEventListener("click", getText, false);
 }
 
@@ -79,7 +81,7 @@ function fillBoard() {
 function showBoard() {
   let board = `
     <div class='winner text-light' id='winner'></div>
-    <div class='bingoboard'>
+    <div class='bingoboard text-dark'>
       <div id='bb' class='grey' onclick='changeBackgroundColor(this)'>bb</div>
       <div id='bi' class='grey' onclick='changeBackgroundColor(this)'>bi</div>
       <div id='bn' class='grey' onclick='changeBackgroundColor(this)'>bn</div>
