@@ -1,0 +1,41 @@
+:root {
+  --rand: #98b8eb;
+}
+
+.randomcolorheader {
+  color: var(--rand);
+  text-decoration: none;
+}
+
+
+.btn {margin: 5px;}
+
+table {
+  /*table-layout: fixed;*/
+  width: 100%;
+  margin-bottom:75px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  border: 1px solid white;
+}
+
+/*.square {*/
+  /*width:20%;*/
+  /*position:relative;*/
+  /*border:1px solid white;*/
+/*}*/
+/*.square:after {*/
+  /*content: '';*/
+  /*display: block;*/
+  /*margin-top: 100%;*/
+/*}*/
+/*.square .content {*/
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*bottom: 0;*/
+  /*left: 0;*/
+  /*right: 0;*/
+/*}*/
