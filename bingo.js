@@ -38,7 +38,8 @@ function getText() {
 
 
 function freeSpace() {
-  document.getElementById("nncard").innerHTML += "<br>Free Space";
+  document.getElementById("nn").innerHTML = "<br>Free Space";
+  document.getElementById("nn").setAttribute("class", "white")
 }
 
 
@@ -60,161 +61,82 @@ function fillBoard() {
     console.log("----------------")
   }
 
-  textSplit.forEach(checkEmpty)
-  textSplit.forEach(fill)
+  function fillSquares(value, index, array) {
+    console.log("----------------")
+    console.log("Value: " + value)
+    console.log("Index: " + index)
+    console.log("----------------")
+    document.getElementById(value).innerHTML = selected[index];
+  }
+
+  textSplit.forEach(checkEmpty);
+  textSplit.forEach(fill);
+  const shuffled = textSplit.sort(() => 0.5 - Math.random());
+  let selected = shuffled.slice(0, 25);
+  console.log(selected)
+  squares.forEach(fillSquares);
+  freeSpace()
 }
 
 
 function showBoard() {
   let board = `
-          <table class="text-center">
-          <tr>
-            <td>B</td>
-            <td>I</td>
-            <td>N</td>
-            <td>G</td>
-            <td>O</td>
-          </tr>
-          <tr>
-            <td id="bb" class="square">
-              <div id="bbcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">bb
-              </div>
-            </td>
-            <td id="ib" class="square">
-              <div id="ibcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">ib
-              </div>
-            </td>
-            <td id="ng" class="square">
-              <div id="ngcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">ng
-              </div>
-            </td>
-            <td id="gb" class="square">
-              <div id="gbcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">gb
-              </div>
-            </td>
-            <td id="ob" class="square">
-              <div id="obcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">ob
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td id="bi" class="square">
-              <div id="bicard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">bi
-              </div>
-            </td>
-            <td id="ii" class="square">
-              <div id="iicard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">ii
-              </div>
-            </td>
-            <td id="ni" class="square">
-              <div id="nicard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">ni
-              </div>
-            </td>
-            <td id="gi" class="square">
-              <div id="gicard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">gi
-              </div>
-            </td>
-            <td id="oi" class="square">
-              <div id="oicard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">oi
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td id="bn" class="square">
-              <div id="bncard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">bn
-              </div>
-            </td>
-            <td id="in" class="square">
-              <div id="incard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">in
-              </div>
-            </td>
-            <td id="nn" class="square">
-              <div id="nncard"class="card bg-dark w-100 h-100">
-                <input type="checkbox" checked=true>nn
-              </div>
-            </td>
-            <td id="gn" class="square">
-              <div id="gncard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">gn
-              </div>
-            </td>
-            <td id="on" class="square">
-              <div id="oncard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">on
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td id="bg" class="square">
-              <div id="bgcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">bg
-              </div>
-            </td>
-            <td id="ig" class="square">
-              <div id="igcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">ig
-              </div>
-            </td>
-            <td id="ng" class="square">
-              <div id="ngcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">ng
-              </div>
-            </td>
-            <td id="gg" class="square">
-              <div id="ggcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">gg
-              </div>
-            </td>
-            <td id="og" class="square">
-              <div id="ogcard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">og
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td id="bo" class="square">
-              <div id="bocard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">bo
-              </div>
-            </td>
-            <td id="io" class="square">
-              <div id="iocard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">io
-              </div>
-            </td>
-            <td id="no" class="square">
-              <div id="nocard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">no
-              </div>
-            </td>
-            <td id="go" class="square">
-              <div id="gocard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">go
-              </div>
-            </td>
-            <td id="oo" class="square">
-              <div id="oocard"class="card bg-dark w-100 h-100">
-                <input type="checkbox">oo
-              </div>
-            </td>
-          </tr>
-          </table>
-  `;
-
+    <div class='bingoboard'>
+      <div id='bb' class='grey' onclick='changeBackgroundColor(this)'>bb</div>
+      <div id='bi' class='grey' onclick='changeBackgroundColor(this)'>bi</div>
+      <div id='bn' class='grey' onclick='changeBackgroundColor(this)'>bn</div>
+      <div id='bg' class='grey' onclick='changeBackgroundColor(this)'>bg</div>
+      <div id='bo' class='grey' onclick='changeBackgroundColor(this)'>bo</div>
+      <div id='ib' class='grey' onclick='changeBackgroundColor(this)'>ib</div>
+      <div id='ii' class='grey' onclick='changeBackgroundColor(this)'>ii</div>
+      <div id='in' class='grey' onclick='changeBackgroundColor(this)'>in</div>
+      <div id='ig' class='grey' onclick='changeBackgroundColor(this)'>ig</div>
+      <div id='io' class='grey' onclick='changeBackgroundColor(this)'>io</div>
+      <div id='nb' class='grey' onclick='changeBackgroundColor(this)'>nb</div>
+      <div id='ni' class='grey' onclick='changeBackgroundColor(this)'>ni</div>
+      <div id='nn' class='grey' onclick='changeBackgroundColor(this)'>nn</div>
+      <div id='ng' class='grey' onclick='changeBackgroundColor(this)'>ng</div>
+      <div id='no' class='grey' onclick='changeBackgroundColor(this)'>no</div>
+      <div id='gb' class='grey' onclick='changeBackgroundColor(this)'>gb</div>
+      <div id='gi' class='grey' onclick='changeBackgroundColor(this)'>gh</div>
+      <div id='gn' class='grey' onclick='changeBackgroundColor(this)'>gn</div>
+      <div id='gg' class='grey' onclick='changeBackgroundColor(this)'>gg</div>
+      <div id='go' class='grey' onclick='changeBackgroundColor(this)'>go</div>
+      <div id='ob' class='grey' onclick='changeBackgroundColor(this)'>ob</div>
+      <div id='oi' class='grey' onclick='changeBackgroundColor(this)'>oi</div>
+      <div id='on' class='grey' onclick='changeBackgroundColor(this)'>on</div>
+      <div id='og' class='grey' onclick='changeBackgroundColor(this)'>og</div>
+      <div id='oo' class='grey' onclick='changeBackgroundColor(this)'>oo</div>
+    </div>
+        `; 
   document.getElementById("main-content").innerHTML = board;
   fillBoard()
 }
+
+function changeBackgroundColor(divObj) {
+  currentclass = divObj.getAttribute("class")
+  console.log("Current Class: " + currentclass)
+  if (currentclass == 'grey'){
+    divObj.setAttribute("class", "white");
+  } else if (currentclass == 'white'){
+    divObj.setAttribute("class", "grey");
+  }
+}
+
+//function changeBackgroundColor(divObj) {
+  //background = divObj.style.background;
+  //console.log("Name Of Object: " + divObj.className);
+  //console.log("Background: " + background);
+  //if (divObj.style.background != "#ffffff"){
+    //divObj.style.background="#ffffff";
+  //} else if (background == "rgb(255, 255, 255) none repeat scroll 0% 0%" && divObj.classList.contains(grey)){
+    //console.log("We are trying...");
+    //divObj.style.background="grey";
+  //} else { 
+    //divObj.style.background="blue";
+  //} 
+    
+//}
+
 
 showTextField()
