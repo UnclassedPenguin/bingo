@@ -12,6 +12,11 @@ function clearDiv() {
   document.getElementById("main-content").innerHTML = "";
 }
 
+function clearWinnerDiv() {
+  document.getElementById("winner").innerHTML = "";
+}
+
+
 function showTextField() {
   clearDiv()
 
@@ -54,13 +59,19 @@ function fillBoard() {
 
 
   function fillSquares(value, index, array) {
+    document.getElementById(value).setAttribute("class", "grey");
     document.getElementById(value).innerHTML = selected[index];
   }
 
   textSplit.forEach(checkEmpty);
+  textSplit.forEach(checkEmpty);
+  textSplit.forEach(checkEmpty);
+  textSplit.forEach(checkEmpty);
   const shuffled = textSplit.sort(() => 0.5 - Math.random());
   let selected = shuffled.slice(0, 25);
+  
   squares.forEach(fillSquares);
+
   freeSpace()
 }
 
@@ -202,6 +213,23 @@ function youWin() {
     <br><h2>Bingo!! You win!!</h2>
   `;
   document.getElementById("winner").innerHTML = html;
+  document.getElementById("winner").innerHTML += `
+    <button type='button' class='btn btn-light btn-small' id='resetButton'>Reset Board</button>
+    `;
+  document.getElementById("winner").innerHTML += `
+    <button type='button' class='btn btn-light btn-small' id='newButton'>New Board</button>
+    `;
+  
+  document.getElementById("resetButton").addEventListener("click", resetBoard, false);
+  document.getElementById("newButton").addEventListener("click", newBoard, false);
 }
 
+function resetBoard() {
+  clearWinnerDiv();
+  fillBoard();
+}
+
+function newBoard() {
+  location.reload(true);
+}
 showTextField()
