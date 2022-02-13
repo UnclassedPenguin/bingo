@@ -51,13 +51,17 @@
 .grey {
   background:grey;
   border:1px solid black;
-  padding:1em;
+  padding:5px;
+  min-height:100px;
+  min-width:100px;
 }
 
 .white {
   background:white;
   border:1px solid black;
-  padding:1em;
+  padding:5px;
+  min-height:100px;
+  min-width:100px;
 }
 
 table {
