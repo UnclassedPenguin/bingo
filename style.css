@@ -9,41 +9,11 @@
 
 
 .bingoboard {
-  width:100%;
+  /*width:100%;*/
   display:grid;
   grid-template-columns:20% 20% 20% 20% 20%;
   grid-template-rows:100px 100px 100px 100px 100px;;
 }
-
-.bb {background:grey;}
-.bi {}
-.bn {background:grey;}
-.bg {}
-.bo {background:grey;}
-
-.ib {}
-.ii {background:grey;}
-.in {}
-.ig {background:grey;}
-.io {}
-
-.nb {background:grey;}
-.ni {}
-.nn {background:grey;}
-.ng {}
-.no {background:grey;}
-
-.gb {}
-.gi {background:grey;}
-.gn {}
-.gg {background:grey;}
-.go {}
-
-.ob {background:grey;}
-.oi {}
-.on {background:grey;}
-.og {}
-.oo {background:grey;}
 
 .btn {margin: 5px;}
 
@@ -52,16 +22,16 @@
   background:grey;
   border:1px solid black;
   padding:5px;
-  min-height:100px;
-  min-width:100px;
+  /*min-height:100px;*/
+  /*min-width:100px;*/
 }
 
 .white {
   background:white;
   border:1px solid black;
   padding:5px;
-  min-height:100px;
-  min-width:100px;
+  /*min-height:100px;*/
+  /*min-width:100px;*/
 }
 
 table {
