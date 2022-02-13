@@ -1,3 +1,2 @@
-# Hearts point tracker
+# Bingo
 
-for keeping track of points in hearts.
