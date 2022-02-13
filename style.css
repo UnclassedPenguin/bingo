@@ -11,7 +11,8 @@
 .bingoboard {
   /*width:100%;*/
   display:grid;
-  grid-template-columns:20% 20% 20% 20% 20%;
+  /*grid-template-columns:20% 20% 20% 20% 20%;*/
+  grid-template-columns:minmax(100px, 200px) minmax(100px, 200px) minmax(100px, 200px) minmax(100px, 200px) minmax(100px, 200px);
   grid-template-rows:100px 100px 100px 100px 100px;;
 }
 

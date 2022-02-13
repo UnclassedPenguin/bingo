@@ -1,4 +1,5 @@
 var textSplit = [];
+var freeSPaceBox = true;
 const squares = ["bb", "bi", "bn", "bg", "bo",
                  "ib", "ii", "in", "ig", "io",
                  "nb", "ni", "nn", "ng", "no",
@@ -24,6 +25,8 @@ function showTextField() {
   `;
   let form = `
     <form>
+      <label for="freeSpaceBox">Free Space: </label>
+      <input type="checkbox" id="freeSpaceBox" name="freeSpaceBox" checked><br>
       <label for="bingoList">Enter your bingo items:</label><br/>
       <textarea id="bingoList" name="bingoList" rows="10" cols="50"></textarea>
     </form>
@@ -37,6 +40,7 @@ function showTextField() {
 function getText() {
   let text = document.getElementById("bingoList").value;
   textSplit = text.split(/\r?\n/);
+  freeSpaceBox = document.getElementById("freeSpaceBox").checked;
 
   clearDiv()
   showBoard()
@@ -73,8 +77,9 @@ function fillBoard() {
   let selected = shuffled.slice(0, 25);
   
   squares.forEach(fillSquares);
-
-  freeSpace()
+  if (freeSpaceBox == true) {
+    freeSpace()
+  }
 }
 
 
