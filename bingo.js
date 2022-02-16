@@ -41,7 +41,7 @@ function clearWinnerDiv() {
 // This is the function to show the text field where you enter
 // the items you want on your bingo board.
 function showTextField() {
-  clearDiv()
+  clearDiv();
   let html = `
     <p>Each new line will be a new item</p>
   `;
@@ -67,8 +67,8 @@ function getText() {
   textSplit = text.split(/\r?\n/);
   freeSpaceBox = document.getElementById("freeSpaceBox").checked;
 
-  clearDiv()
-  showBoard()
+  clearDiv();
+  showBoard();
 }
 
 
@@ -105,7 +105,7 @@ function showBoard() {
     </div>
         `; 
   document.getElementById("main-content").innerHTML = board;
-  fillBoard()
+  fillBoard();
 }
 
 
@@ -148,7 +148,7 @@ function fillBoard() {
 
   // If freespace is checked, puts it on the board.
   if (freeSpaceBox == true) {
-    freeSpace()
+    freeSpace();
   }
 }
 
@@ -163,7 +163,7 @@ function changeBackgroundColor(divObj) {
   } else if (currentclass == 'white'){
     divObj.setAttribute("class", "grey");
   }
-  checkWin()
+  checkWin();
 }
 
 
@@ -244,7 +244,7 @@ function checkWin() {
       document.getElementById("ob").className == "white" 
 
   ){
-    youWin()
+    youWin();
   } else {
     document.getElementById("winner").innerHTML = "";
   }
@@ -273,8 +273,8 @@ function youWin() {
 // Function for Reset Board button, shuffles the items again and gets
 // 25 new random items to fill the board.
 function resetBoard() {
-  clearWinnerDiv()
-  fillBoard()
+  clearWinnerDiv();
+  fillBoard();
 }
 
 
@@ -285,4 +285,4 @@ function newBoard() {
 
 
 // Start of Program
-showTextField()
+showTextField();
