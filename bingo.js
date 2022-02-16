@@ -59,7 +59,7 @@ function showTextField() {
 }
 
 
-// This function grabs the text in the text box and splits 
+// This function grabs the text in the text box and splits
 // all the items into an array based on newline.
 // Also checks if you want to use the freespace or not
 function getText() {
@@ -103,7 +103,7 @@ function showBoard() {
       <div id='og' class='grey' onclick='changeBackgroundColor(this)'>og</div>
       <div id='oo' class='grey' onclick='changeBackgroundColor(this)'>oo</div>
     </div>
-        `; 
+        `;
   document.getElementById("main-content").innerHTML = board;
   fillBoard();
 }
@@ -112,13 +112,13 @@ function showBoard() {
 // This is the function that fills the board with items from the array.
 function fillBoard() {
 
-  // This function checks for empty values and removes them from the array. 
+  // This function checks for empty values and removes them from the array.
   function checkEmpty(value, index, array) {
       if (value == "") {
         textSplit.splice(index, 1);
       }
     }
-  
+
   // This function takes an item from the random array created and
   // inserts it into one of the squares.
   function fillSquares(value, index, array) {
@@ -142,7 +142,7 @@ function fillBoard() {
   // first 25 to be used on the board.
   const shuffled = textSplit.sort(() => 0.5 - Math.random());
   let selected = shuffled.slice(0, 25);
- 
+
   // Calls the function to fill the squares.
   squares.forEach(fillSquares);
 
@@ -157,10 +157,10 @@ function fillBoard() {
 // when clicked and calls the function to check
 // if you have gotten a bingo on every click.
 function changeBackgroundColor(divObj) {
-  currentclass = divObj.getAttribute("class");
-  if (currentclass == 'grey'){
+  var currentclass = divObj.getAttribute("class");
+  if (currentclass == "grey"){
     divObj.setAttribute("class", "white");
-  } else if (currentclass == 'white'){
+  } else if (currentclass == "white"){
     divObj.setAttribute("class", "grey");
   }
   checkWin();
@@ -171,78 +171,77 @@ function changeBackgroundColor(divObj) {
 // and that you have gotten a bingo
 function checkWin() {
   if (
-      document.getElementById("bb").className == "white" &&
+     (document.getElementById("bb").className == "white" &&
       document.getElementById("bi").className == "white" &&
       document.getElementById("bn").className == "white" &&
       document.getElementById("bg").className == "white" &&
-      document.getElementById("bo").className == "white" 
+      document.getElementById("bo").className == "white")
     ||
-      document.getElementById("bb").className == "white" &&
+     (document.getElementById("bb").className == "white" &&
       document.getElementById("ib").className == "white" &&
       document.getElementById("nb").className == "white" &&
       document.getElementById("gb").className == "white" &&
-      document.getElementById("ob").className == "white" 
+      document.getElementById("ob").className == "white")
     ||
-      document.getElementById("ib").className == "white" &&
+     (document.getElementById("ib").className == "white" &&
       document.getElementById("ii").className == "white" &&
       document.getElementById("in").className == "white" &&
       document.getElementById("ig").className == "white" &&
-      document.getElementById("io").className == "white" 
+      document.getElementById("io").className == "white")
     ||
-      document.getElementById("bi").className == "white" &&
+     (document.getElementById("bi").className == "white" &&
       document.getElementById("ii").className == "white" &&
       document.getElementById("ni").className == "white" &&
       document.getElementById("gi").className == "white" &&
-      document.getElementById("oi").className == "white" 
+      document.getElementById("oi").className == "white")
     ||
-      document.getElementById("nb").className == "white" &&
+     (document.getElementById("nb").className == "white" &&
       document.getElementById("ni").className == "white" &&
       document.getElementById("nn").className == "white" &&
       document.getElementById("ng").className == "white" &&
-      document.getElementById("no").className == "white" 
+      document.getElementById("no").className == "white")
     ||
-      document.getElementById("bn").className == "white" &&
+     (document.getElementById("bn").className == "white" &&
       document.getElementById("in").className == "white" &&
       document.getElementById("nn").className == "white" &&
       document.getElementById("gn").className == "white" &&
-      document.getElementById("on").className == "white" 
+      document.getElementById("on").className == "white")
     ||
-      document.getElementById("gb").className == "white" &&
+     (document.getElementById("gb").className == "white" &&
       document.getElementById("gi").className == "white" &&
       document.getElementById("gn").className == "white" &&
       document.getElementById("gg").className == "white" &&
-      document.getElementById("go").className == "white" 
+      document.getElementById("go").className == "white")
     ||
-      document.getElementById("bg").className == "white" &&
+     (document.getElementById("bg").className == "white" &&
       document.getElementById("ig").className == "white" &&
       document.getElementById("ng").className == "white" &&
       document.getElementById("gg").className == "white" &&
-      document.getElementById("og").className == "white" 
+      document.getElementById("og").className == "white")
     ||
-      document.getElementById("ob").className == "white" &&
+     (document.getElementById("ob").className == "white" &&
       document.getElementById("oi").className == "white" &&
       document.getElementById("on").className == "white" &&
       document.getElementById("og").className == "white" &&
-      document.getElementById("oo").className == "white" 
+      document.getElementById("oo").className == "white")
     ||
-      document.getElementById("bo").className == "white" &&
+     (document.getElementById("bo").className == "white" &&
       document.getElementById("io").className == "white" &&
       document.getElementById("no").className == "white" &&
       document.getElementById("go").className == "white" &&
-      document.getElementById("oo").className == "white" 
+      document.getElementById("oo").className == "white")
     ||
-      document.getElementById("bb").className == "white" &&
+     (document.getElementById("bb").className == "white" &&
       document.getElementById("ii").className == "white" &&
       document.getElementById("nn").className == "white" &&
       document.getElementById("gg").className == "white" &&
-      document.getElementById("oo").className == "white" 
+      document.getElementById("oo").className == "white")
     ||
-      document.getElementById("bo").className == "white" &&
+     (document.getElementById("bo").className == "white" &&
       document.getElementById("ig").className == "white" &&
       document.getElementById("nn").className == "white" &&
       document.getElementById("gi").className == "white" &&
-      document.getElementById("ob").className == "white" 
-
+      document.getElementById("ob").className == "white")
   ){
     youWin();
   } else {
@@ -264,7 +263,7 @@ function youWin() {
   document.getElementById("winner").innerHTML += `
     <button type='button' class='btn btn-light btn-small' id='newButton'>New Board</button>
     `;
-  
+
   document.getElementById("resetButton").addEventListener("click", resetBoard, false);
   document.getElementById("newButton").addEventListener("click", newBoard, false);
 }
