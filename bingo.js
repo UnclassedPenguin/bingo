@@ -1,5 +1,24 @@
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//
+// Tyler(UnclassedPenguin) Bingo 
+//
+// A javascript program for creating a bingo board
+// from items you enter in.
+// 
+// 
+//  Written by: Tyler(UnclassedPenguin) 2022
+//        Site: https://unclassed.ca
+//      GitHub: https://github.com/UnclassedPenguin
+// This GitHub: https://github.com/UnclassedPenguin/bingo.git
+//
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+
+// Global Variables
 var textSplit = [];
-var freeSPaceBox = true;
+var freeSpaceBox = true;
 const squares = ["bb", "bi", "bn", "bg", "bo",
                  "ib", "ii", "in", "ig", "io",
                  "nb", "ni", "nn", "ng", "no",
@@ -7,23 +26,26 @@ const squares = ["bb", "bi", "bn", "bg", "bo",
                  "ob", "oi", "on", "og", "oo"];
 
 
-
 // Function to clear out the main-content div
 function clearDiv() {
   document.getElementById("main-content").innerHTML = "";
 }
 
+
+// Function to clear out the winner div
 function clearWinnerDiv() {
   document.getElementById("winner").innerHTML = "";
 }
 
 
+// This is the function to show the text field where you enter
+// the items you want on your bingo board.
 function showTextField() {
   clearDiv()
   let html = `
     <p>Each new line will be a new item</p>
   `;
-  let form = `
+  html += `
     <form>
       <label for="freeSpaceBox">Free Space: </label>
       <input type="checkbox" id="freeSpaceBox" name="freeSpaceBox" checked><br>
@@ -31,12 +53,15 @@ function showTextField() {
       <textarea id="bingoList" name="bingoList" rows="10" cols="50"></textarea>
     </form>
     <button type='button' class='btn btn-light btn-small' id='getTextButton'>Create Board</button>
-  `
-  document.getElementById("main-content").innerHTML = html + form;
+  `;
+  document.getElementById("main-content").innerHTML = html;
   document.getElementById("getTextButton").addEventListener("click", getText, false);
 }
 
 
+// This function grabs the text in the text box and splits 
+// all the items into an array based on newline.
+// Also checks if you want to use the freespace or not
 function getText() {
   let text = document.getElementById("bingoList").value;
   textSplit = text.split(/\r?\n/);
@@ -47,42 +72,7 @@ function getText() {
 }
 
 
-function freeSpace() {
-  document.getElementById("nn").innerHTML = "Free Space";
-  document.getElementById("nn").setAttribute("class", "white")
-}
-
-
-function fillBoard() {
-  function checkEmpty(value, index, array) {
-      //console.log("Value = " + value);
-      //console.log("Index = " + index);
-      //console.log("Array = " + array);
-      if (value == "") {
-        textSplit.splice(index, 1);
-      }
-    }
-
-
-  function fillSquares(value, index, array) {
-    document.getElementById(value).setAttribute("class", "grey");
-    document.getElementById(value).innerHTML = selected[index];
-  }
-
-  textSplit.forEach(checkEmpty);
-  textSplit.forEach(checkEmpty);
-  textSplit.forEach(checkEmpty);
-  textSplit.forEach(checkEmpty);
-  const shuffled = textSplit.sort(() => 0.5 - Math.random());
-  let selected = shuffled.slice(0, 25);
-  
-  squares.forEach(fillSquares);
-  if (freeSpaceBox == true) {
-    freeSpace()
-  }
-}
-
-
+// This is the function to show the board
 function showBoard() {
   let board = `
     <div class='winner text-light' id='winner'></div>
@@ -115,22 +105,70 @@ function showBoard() {
     </div>
         `; 
   document.getElementById("main-content").innerHTML = board;
-  fillBoard();
+  fillBoard()
 }
 
 
+// This is the function that fills the board with items from the array.
+function fillBoard() {
+
+  // This function checks for empty values and removes them from the array. 
+  function checkEmpty(value, index, array) {
+      if (value == "") {
+        textSplit.splice(index, 1);
+      }
+    }
+  
+  // This function takes an item from the random array created and
+  // inserts it into one of the squares.
+  function fillSquares(value, index, array) {
+    document.getElementById(value).setAttribute("class", "grey");
+    document.getElementById(value).innerHTML = selected[index];
+  }
+
+  // This is the function that sets the free space if it is chosen
+  function freeSpace() {
+    document.getElementById("nn").innerHTML = "Free Space";
+    document.getElementById("nn").setAttribute("class", "white");
+  }
+
+  // Checks for empty items in array.
+  textSplit.forEach(checkEmpty);
+  textSplit.forEach(checkEmpty);
+  textSplit.forEach(checkEmpty);
+  textSplit.forEach(checkEmpty);
+
+  // Shuffles the items into a random sort and then gets the
+  // first 25 to be used on the board.
+  const shuffled = textSplit.sort(() => 0.5 - Math.random());
+  let selected = shuffled.slice(0, 25);
+ 
+  // Calls the function to fill the squares.
+  squares.forEach(fillSquares);
+
+  // If freespace is checked, puts it on the board.
+  if (freeSpaceBox == true) {
+    freeSpace()
+  }
+}
+
+
+// This function changes the color of the squares
+// when clicked and calls the function to check
+// if you have gotten a bingo on every click.
 function changeBackgroundColor(divObj) {
-  currentid = divObj.getAttribute("id");
   currentclass = divObj.getAttribute("class");
   if (currentclass == 'grey'){
     divObj.setAttribute("class", "white");
   } else if (currentclass == 'white'){
     divObj.setAttribute("class", "grey");
   }
-  checkWin();
+  checkWin()
 }
 
 
+// Checks if any of the 12 options for a 5-in-a-row have been clicked
+// and that you have gotten a bingo
 function checkWin() {
   if (
       document.getElementById("bb").className == "white" &&
@@ -206,16 +244,16 @@ function checkWin() {
       document.getElementById("ob").className == "white" 
 
   ){
-  console.log("BINGO!!");
-  youWin();
+    youWin()
   } else {
     document.getElementById("winner").innerHTML = "";
   }
 }
 
 
+// Prints to the "winner" div that you have gotten bingo, and shows buttons
+// to reset board or create a new board.
 function youWin() {
-  console.log("You Are a winner!") 
   let html = `
     <br><h2>Bingo!! You win!!</h2>
   `;
@@ -231,12 +269,20 @@ function youWin() {
   document.getElementById("newButton").addEventListener("click", newBoard, false);
 }
 
+
+// Function for Reset Board button, shuffles the items again and gets
+// 25 new random items to fill the board.
 function resetBoard() {
-  clearWinnerDiv();
-  fillBoard();
+  clearWinnerDiv()
+  fillBoard()
 }
 
+
+// Function to create new board. Just refreshes the page and starts it over.
 function newBoard() {
   location.reload(true);
 }
+
+
+// Start of Program
 showTextField()
