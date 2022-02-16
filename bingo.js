@@ -43,7 +43,9 @@ function clearWinnerDiv() {
 function showTextField() {
   clearDiv();
   let html = `
-    <p>Each new line will be a new item</p>
+    <p>Each new line will be a new item<br>
+    You need at least 24 items(if you use free space)<br>
+    The more the better</p>
   `;
   html += `
     <form>
